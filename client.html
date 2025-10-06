@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Receive Data</title>
+</head>
+<body>
+  <h1>Received Data:</h1>
+  <p id="output">Waiting for data...</p>
+
+  <script>
+    async function fetchData() {
+      try {
+        const res = await fetch('/data');
+        const result = await res.json();
+        document.getElementById('output').innerText = result.data || 'No data yet';
+      } catch (e) {
+        document.getElementById('output').innerText = 'Error fetching data';
+      }
+    }
+
+    setInterval(fetchData, 2000); // Poll every 2 seconds
+  </script>
+</body>
+</html>
