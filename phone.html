@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Data</title>
+</head>
+<body>
+  <h1>Send Data</h1>
+  <input type="text" id="dataInput" placeholder="Enter data" />
+  <button onclick="sendData()">Send</button>
+
+  <script>
+    async function sendData() {
+      const data = document.getElementById('dataInput').value;
+      const res = await fetch('/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data })
+      });
+
+      const result = await res.json();
+      alert(result.status || result.error);
+    }
+  </script>
+</body>
+</html>
